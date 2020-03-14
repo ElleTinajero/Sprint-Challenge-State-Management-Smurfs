@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from 'axios';
+import Smurfs from './moreSmurfs';
+import AddSmurf from './AddSmurf';
+import SmurfContext from '../contexts/SmurfContext';
 
 
 export default function App () {
-
-  const [ smurfs, setSmurfs ] = useState([])
+  const [ smurfs, setSmurfs ] = useState([]);
 
   useEffect(() => {
-    axios.get('https://localhost:3333/smurfs')
+    axios.get('http://localhost:3333/smurfs')
     .then(res => {
       console.log(res.data);
       setSmurfs(res.data);
     })
-    .catch(error => { 
-      console.error('error', err)
+    .catch(err => { 
+      console.error('server error', err)
     });
   },[])
 
@@ -28,9 +30,17 @@ export default function App () {
     });
   };
 
+  console.log('smurfs', smurfs);
   return (
     <div className="App">
-      <h1>Smurfs :)</h1>
+      <SmurfContext.Provider value={{ smurfs }}>
+        <h1>Smurfs :)</h1>
+        <Smurfs/>
+        <AddSmurf addSmurf={addSmurf} />
+      </SmurfContext.Provider>
+      
     </div>
   )
 }
+
+
