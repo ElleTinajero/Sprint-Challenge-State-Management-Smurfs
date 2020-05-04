@@ -42,14 +42,14 @@ export const addSmurf = newSmurf => dispatch => {
     });
 };
 
-export const deleteSmurf = id => dispatch =>{
-    dispatch( { type: DELETE_SMURF, id: id })
+// export const deleteSmurf = id => dispatch =>{
+//     dispatch( { type: DELETE_SMURF, id: id })
 
-    axios.delete(`http://localhost:3333/smurfs/${id}`)
-    .then(res=>{
-        dispatch({ type:DELETE_SMURF, id:id })
-    })
-        .catch(err=>{
-        console.log(err)
-    })
-}
+//     axios.delete(`http://localhost:3333/smurfs/${id}`)
+//     .then(res=>{
+//         dispatch({ type:DELETE_SMURF, id:id })
+//     })
+//         .catch(err=>{
+//         console.log(err)
+//     })
+// }
